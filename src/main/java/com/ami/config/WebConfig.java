@@ -18,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.ami.services.AppUserDetailsService;
 
 /**
- * @author kamal berriga
+ * 
+ * @author amaresh.kumar
  *
  */
 @Configurable
@@ -65,7 +66,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 		// starts authorizing configurations
 		.authorizeRequests()
 		// ignoring the guest's urls "
-		.antMatchers("/account/register","/account/login","/logout").permitAll()
+		.antMatchers("/account/register","/account/login","/logout","/account/testRepo").permitAll()
 		// authenticate all remaining URLS
 		.anyRequest().fullyAuthenticated().and()
       /* "/logout" will log the user out by invalidating the HTTP Session,

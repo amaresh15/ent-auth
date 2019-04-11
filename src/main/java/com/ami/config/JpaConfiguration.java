@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @Profile("jpa")
 // Custom JPA configuration here
-@EnableJpaRepositories("com.ami.entities")
+@EnableJpaRepositories("com.ami.dao.jpa")
 // @EnableJpaAuditing
 public class JpaConfiguration {
 }

@@ -1,6 +1,7 @@
 package com.ami.util;
-/** 
- * @author kamal berriga
+/**
+ * 
+ * @author amaresh.kumar
  *
  */
 public class CustomErrorType {

@@ -32,4 +32,10 @@ public class UserService {
 	public User findByID(String id) {
 		return userRepository.findOne(id);
 	}
+	
+	public String repositoryType() {
+		System.out.println("Repository Type: " + userRepository.getClass());
+		
+		return "Repository Using: " + userRepository.getClass();
+	}
 }

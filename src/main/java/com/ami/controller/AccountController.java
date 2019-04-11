@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ami.entities.User;
 import com.ami.services.UserService;
 import com.ami.util.CustomErrorType;
-/** 
- * @author kamal berriga
+
+/**
+ * 
+ * @author amaresh.kumar
  *
  */
 @RestController
@@ -34,13 +36,13 @@ public class AccountController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@RequestBody User newUser) {
 		if (userService.find(newUser.getUsername()) != null) {
-			logger.error("username Already exist " + newUser.getUsername());
-			return new ResponseEntity(
-					new CustomErrorType("user with username " + newUser.getUsername() + "already exist "),
+			logger.error(String.format("username Already exist {0}", newUser.getUsername()));
+			return new ResponseEntity<CustomErrorType>(
+					new CustomErrorType(String.format("user with username {0} {1}", newUser.getUsername(), "already exist ")),
 					HttpStatus.CONFLICT);
 		}
 		newUser.setRole("USER");
-		
+
 		return new ResponseEntity<User>(userService.save(newUser), HttpStatus.CREATED);
 	}
 
@@ -48,8 +50,16 @@ public class AccountController {
 	@CrossOrigin
 	@RequestMapping("/login")
 	public Principal user(Principal principal) {
-		logger.info("user logged "+principal);
+		logger.info("user logged ", principal);
 		return principal;
 	}
-	
+
+	// this is the login api/service
+	@CrossOrigin
+	@RequestMapping("/testRepo")
+	public String testRepo() {
+		logger.info("Repository Type: ", userService);
+		return userService.repositoryType();
+	}
+
 }

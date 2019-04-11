@@ -1,4 +1,4 @@
-package com.social.controller;
+package com.ami.controller;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

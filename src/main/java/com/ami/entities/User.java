@@ -1,6 +1,5 @@
 package com.ami.entities;
 
-
 /*******************************************************************************
  * 2017, this is the user entity class ,
  * this class implements users details of the spring security framework
@@ -19,10 +18,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * 
  * @author amaresh.kumar
@@ -30,44 +31,49 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
  */
 @Entity
 @Document
-//@Table(name="User_SprAuth")
-//@Scope("session")
-public  class User implements UserDetails{
-	public static enum Role{ USER }
+// @Table(name="User_SprAuth")
+// @Scope("session")
+@Component
+public class User implements UserDetails {
+	public static enum Role {
+		USER
+	}
+
+	public User() {
+
+	}
+
+	public User(String username, String password, String fullName) {
+		this.username = username;
+		this.password = password;
+		this.fullName = fullName;
+	}
+
 	/**
 	 * Description of the property id.
 	 */
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private String id ;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 	/**
 	 * Description of the property email.
 	 */
 	@Column(unique = true)
-	private String username ;
+	private String username;
 	/**
 	 * Description of the property password.
 	 */
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private String password ;
+	private String password;
 	/**
 	 * Description of the property role , to grant authority to the user .
 	 */
-    private String  role;
-    /**
+	private String role;
+	/**
 	 * Description of the property full name.
 	 */
-    private String fullName;
+	private String fullName;
 
-    public User(){
-    	
-    }
-    
-    public User(String username,String password,String fullName){
-    	this.username=username;
-    	this.password= password;
-    	this.fullName=fullName;
-    }
 	@JsonIgnore
 	@Override
 	public boolean isEnabled() {
@@ -101,23 +107,14 @@ public  class User implements UserDetails{
 	}
 
 	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role +
-				 ",]";
-	}
-
-	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return username;
 	}
-	
 
 	public String getRole() {
 		return role;
@@ -146,7 +143,10 @@ public  class User implements UserDetails{
 	public String getId() {
 		return id;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ",]";
+	}
+
 }

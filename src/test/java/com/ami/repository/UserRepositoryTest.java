@@ -1,4 +1,4 @@
-package com.social.repository;
+package com.ami.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -13,11 +13,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ami.dao.UserRepository;
+import com.ami.dao.jpa.UserRepositoryJPA;
 import com.ami.entities.User;
 import com.ami.services.UserService;
 
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
@@ -26,7 +26,7 @@ public class UserRepositoryTest {
 	@Autowired
 	private TestEntityManager entityManager;
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryJPA userRepository;
 
 	@Test
 	public void testSave() {
